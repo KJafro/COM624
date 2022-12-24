@@ -64,3 +64,25 @@ chosen_stock = st.sidebar.selectbox("**Select a Stock**",stocks)
 
 data = pd.DataFrame()
 processed_data = pd.DataFrame()
+
+
+def downloadcsv(data, message):
+    csv = data.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    if message == "Raw":
+        href = f'<a href="data:file/csv;base64,{b64}" download="{chosen_stock}_RAW.csv">Download Stock History</a>'
+    return href
+
+
+if chosen_stock != None:
+    data, stock_details = lod_data(chosen_stock)
+    container = st.container()
+    col1, col2 = container.columns([5, 5])
+
+    col1.subheader(f"Earliest Data")
+    col1.write(data.head(20))
+    col1.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
+
+    col2.subheader(f"Latest Data")
+    col2.write(data.tail(200))
+    col2.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
