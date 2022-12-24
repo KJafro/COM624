@@ -5,8 +5,81 @@ import streamlit as st
 import yfinance as yf
 from urllib import request
 from plotly import graph_objs as ts
+from streamlit_extras.colored_header import colored_header
 
+st.set_page_config(
+    page_title="COM624 Stock Predictor",
+    page_icon="💰",
+    layout="wide",
+)
+m = st.markdown("""
+<style>
+div.stButton {
+    display: flex;
+    justify-content: center;
+    }
 
+div.stButton > button:first-child {
+    background-color: green;
+    color: white;
+    box-shadow: 1px 1px 1px 1px black;
+    width: 150px;
+    padding: 4px;
+    margin-bottom: 0px;
+}
+
+div.stButton > button:first-child:hover {
+    background-color: rgb(50, 144, 50);
+    font-weight: bold;
+    color: white;
+    border: 1px solid rgb(50, 144, 50);
+}
+
+div.stMarkdown {
+text-align: center;
+}
+
+css-163ttbj.e1fqkh3o11 {
+background-color: rgb(182, 179, 179);
+}
+
+.css-163ttbj.e1fqkh3o11 {
+border-radius: 4px;
+}
+
+.css-6qob1r.e1fqkh3o3 {
+text-align: center;
+}
+
+.css-1vq4p4l.e1fqkh3o4 {
+display: flex;
+justify-content 
+text-align: center;
+}
+
+.css-qri22k.egzxvld0 {
+text-align: center;
+}
+
+.css-18ni7ap.e8zbici2 {
+background-color: rgb(234, 229, 229);
+}
+
+.stApp.streamlit-wide.css-fg4pbf.eczokvf1 {
+background: linear-gradient(rgb(234, 229, 229), rgb(198, 201, 205));
+}
+
+.css-keje6w.e1tzin5v2 {
+margin-bottom: 20px;
+}
+
+.css-1a32fsj.e19lei0e0 {
+display: flex;
+justify-content: center;
+text-align: center;
+margin-top: 20px;
+}
+</style>""", unsafe_allow_html=True)
 
 analyzer = Analyzer()
 
@@ -41,7 +114,11 @@ st.markdown(
 <br>
 4) Scroll to the bottom and click the 'Predict' button</p>""", unsafe_allow_html=True)
 
-st.write('---')
+colored_header(
+    label=" ",
+    description=" ",
+    color_name="blue-70",
+)
 st.sidebar.markdown(
     """<p style="
      text-align: center;
@@ -110,7 +187,7 @@ else:
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
     plot_histo()
 
-st.write('---')
+colored_header(label=" ", description=" ", color_name="blue-70")
 st.markdown(
     """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">LSTM Prediction</p>""",
     unsafe_allow_html=True)
@@ -124,3 +201,16 @@ def predict(chosen_stock, data):
 
 if st.button("Predict"):
     loading_message = st.success("Please wait... This process can take around 10 seconds!")
+
+    if chosen_stock != None:
+        tomo_price, today_pred_price, today_actual_price, analysis_result = predict(chosen_stock,data)
+    loading_message.success("Success!")
+    st.markdown(f"""<p style="text-align:center; font-size: 20px;">
+    <strong>Tomorrow </strong>  {(datetime.date.today() + datetime.timedelta(days=1)).strftime("(<strong>%Y-%m-%d</strong>)")}
+    <br>
+    <strong>Predicted Price = {tomo_price} USD</strong>
+    <br>
+    <br>
+    <strong>Analysis: {analysis_result}</p>
+    """, unsafe_allow_html=True)
+    st.write(data.describe())
