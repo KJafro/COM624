@@ -55,3 +55,12 @@ df_selected_multi = df[df['GICS Sector'].isin(selected_multi)]
 
 START = st.sidebar.date_input(label="**Enter Start Date**",value=datetime.date(2018,1,1))
 TODAY = datetime.date.today().strftime("%Y-%m-%d")
+
+if len(selected_multi) != 0:
+    stocks = df_selected_multi.Symbol.values
+else:
+    stocks = df.Symbol.values
+chosen_stock = st.sidebar.selectbox("**Select a Stock**",stocks)
+
+data = pd.DataFrame()
+processed_data = pd.DataFrame()
