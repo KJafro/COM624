@@ -4,6 +4,7 @@ import base64
 import streamlit as st
 import yfinance as yf
 from urllib import request
+from plotly import graph_objs as ts
 
 @st.cache
 def load_stocks():
@@ -86,3 +87,28 @@ if chosen_stock != None:
     col2.subheader(f"Latest Data")
     col2.write(data.tail(20))
     col2.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
+
+    def plot_time():
+        fig = ts.Figure()
+        fig.add_trace(ts.Scatter(x=data['Date'], y=data['Close'], name="Stock Close"))
+        fig.add_trace(ts.Scatter(x=data['Date'], y=data['Open'], name="Stock Open"))
+        fig.layout.update(xaxis_rangeslider_visible=True, yaxis_title="£")
+        st.plotly_chart(fig, use_container_width=True, theme="streamlit")
+    plot_time()
+
+else:
+
+    def plot_histo():
+        fig = ts.Figure()
+        fig.add_trace(ts.Histogram(x=data['Date'], y=data['Close'], name="Stock Close"))
+        fig.add_trace(ts.Histogram(x=data['Date'], y=data['Open'], name="Stock Open"))
+        fig.update_layout(xaxis_rangeslider_visible=True, yaxis_title="£")
+        st.plotly_chart(fig, use_container_width=True, theme="streamlit")
+    plot_histo()
+
+st.write('---')
+st.markdown(
+    """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">LSTM Prediction</p>""",
+    unsafe_allow_html=True)
+st.markdown(
+    """<p style="text-align: center; font-size: 22px;">Click the button below to predict</p>""", unsafe_allow_html=True)
