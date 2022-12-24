@@ -75,7 +75,7 @@ def downloadcsv(data, message):
 
 
 if chosen_stock != None:
-    data, stock_details = lod_data(chosen_stock)
+    data, stock_details = load_data(chosen_stock)
     container = st.container()
     col1, col2 = container.columns([5, 5])
 
@@ -84,5 +84,5 @@ if chosen_stock != None:
     col1.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
 
     col2.subheader(f"Latest Data")
-    col2.write(data.tail(200))
+    col2.write(data.tail(20))
     col2.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
