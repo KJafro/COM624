@@ -6,6 +6,10 @@ import yfinance as yf
 from urllib import request
 from plotly import graph_objs as ts
 
+
+
+analyzer = Analyzer()
+
 @st.cache
 def load_stocks():
     url = 'http://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
@@ -90,8 +94,8 @@ if chosen_stock != None:
 
     def plot_time():
         fig = ts.Figure()
-        fig.add_trace(ts.Scatter(x=data['Date'], y=data['Close'], name="Stock Close"))
-        fig.add_trace(ts.Scatter(x=data['Date'], y=data['Open'], name="Stock Open"))
+        fig.add_trace(ts.Line(x=data['Date'], y=data['Close'], name="Stock Close"))
+        fig.add_trace(ts.Line(x=data['Date'], y=data['Open'], name="Stock Open"))
         fig.layout.update(xaxis_rangeslider_visible=True, yaxis_title="£")
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
     plot_time()
@@ -112,3 +116,11 @@ st.markdown(
     unsafe_allow_html=True)
 st.markdown(
     """<p style="text-align: center; font-size: 22px;">Click the button below to predict</p>""", unsafe_allow_html=True)
+
+def predict(chosen_stock, data):
+    analysis_result = analyzer.Analysis(chosen_stock)
+    tomo_price, today_pred_price, today_actual_price = prediction.predict(data, chosen_stock)
+    return tomo_price, today_pred_price, today_actual_price, analysis_result
+
+if st.button("Predict"):
+    loading_message = st.success("Please wait... This process can take around 10 seconds!")
