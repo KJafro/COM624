@@ -16,3 +16,22 @@ class Group:
             return True
         else:
             return False
+        def group(self, ticker):
+            self.init_files()
+            if self.file_saved(ticker):
+                path = os.path.join(os.getcwd(), "models", f"{ticker}.json")
+                tme = os.path.getctime(path)
+                file_time = datetime.fromtimestamp(tme)
+                dt_tm = datetime.now()
+                if (dt_tm - file_time).days > 1:
+                    os.remove(os.path.join(os.getcwd(), "models", f"{ticker}.json"))
+                    os.remove(os.path.join(os.getcwd(), "models", f"{ticker}.h5"))
+                    return False
+                else:
+                    return True
+            else:
+                if len(self.model_files) < self.limit:
+                    pass
+                else:
+                    self.remove_files()
+                return False
