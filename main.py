@@ -6,6 +6,7 @@ import yfinance as yf
 from urllib import request
 from plotly import graph_objs as ts
 from streamlit_extras.colored_header import colored_header
+from analysis import Analyzer
 
 st.set_page_config(
     page_title="COM624 Stock Predictor",
