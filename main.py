@@ -7,6 +7,8 @@ from urllib import request
 from plotly import graph_objs as ts
 from streamlit_extras.colored_header import colored_header
 from analysis import Analyzer
+from group import Group
+from prediction import Prediction
 
 st.set_page_config(
     page_title="COM624 Stock Predictor",
@@ -83,6 +85,8 @@ margin-top: 20px;
 </style>""", unsafe_allow_html=True)
 
 analyzer = Analyzer()
+groups = Group()
+prediction = Prediction(groups)
 
 @st.cache
 def load_stocks():
