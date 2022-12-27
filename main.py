@@ -10,6 +10,9 @@ from analysis import Analyzer
 from group import Group
 from prediction import Prediction
 
+
+# Page config with CSS styles
+
 st.set_page_config(
     page_title="COM624 Stock Predictor",
     page_icon="💰",
@@ -69,7 +72,7 @@ background-color: rgb(234, 229, 229);
 }
 
 .stApp.streamlit-wide.css-fg4pbf.eczokvf1 {
-background: linear-gradient(rgb(234, 229, 229), rgb(198, 201, 205));
+background: linear-gradient(rgb(234, 229, 229), rgb(159, 162, 164));
 }
 
 .css-keje6w.e1tzin5v2 {
@@ -87,6 +90,8 @@ margin-top: 20px;
 analyzer = Analyzer()
 groups = Group()
 prediction = Prediction(groups)
+
+# Web Scraping
 
 @st.cache
 def load_stocks():
@@ -134,6 +139,8 @@ st.sidebar.markdown(
      font-size: 34px;
      "></p>""", unsafe_allow_html=True)
 
+# Sidebar
+
 df = load_stocks()
 sector = df.groupby('GICS Sector')
 sorted_sector = sorted(df['GICS Sector'].unique())
@@ -152,6 +159,7 @@ chosen_stock = st.sidebar.selectbox("**Select a Stock**",stocks)
 data = pd.DataFrame()
 processed_data = pd.DataFrame()
 
+# Downloadable CSV file
 
 def downloadcsv(data, message):
     csv = data.to_csv(index=False)
@@ -160,6 +168,7 @@ def downloadcsv(data, message):
         href = f'<a href="data:file/csv;base64,{b64}" download="{chosen_stock}_RAW.csv">Download Stock History</a>'
     return href
 
+# Showing Earliest/Latest data of stock
 
 if chosen_stock != None:
     data, stock_details = load_data(chosen_stock)
@@ -173,6 +182,8 @@ if chosen_stock != None:
     col2.subheader(f"Latest Data")
     col2.write(data.tail(20))
     col2.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
+
+# Plotting Time Series graph
 
     def plot_time():
         fig = ts.Figure()

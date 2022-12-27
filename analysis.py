@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+# Web Scraping
+
 class Analyzer:
     def __init__(self):
         self.finviz_url = r"https://finviz.com/quote.ashx?t="
@@ -19,7 +21,7 @@ class Analyzer:
         times = [i.td.text for i in news]
         for index, time in enumerate(times):
             datedata = time.split(' ')
-            if( len( datedata) == 2):
+            if( len(datedata) == 2):
                 date = datedata[0]
                 time = datedata[1]
                 news_dict[date] = []
@@ -28,6 +30,8 @@ class Analyzer:
             news_dict[date].append([time, headers[index]])
             parsed_data.append([date, time, headers[index]])
         return self.Results(parsed_data)
+
+        # Sentiment Results
 
     def Results(self,table):
         df = pd.DataFrame(table, columns=['Date', 'Time', 'Headline'])
