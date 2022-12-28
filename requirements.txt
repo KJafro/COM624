@@ -48,7 +48,6 @@ psutil
 pure-eval
 pymdown-extensions
 pyparsing
-pywin32
 pywinpty
 pyzmq
 Send2Trash
