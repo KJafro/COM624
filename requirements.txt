@@ -6,5 +6,4 @@ streamlit
 vaderSentiment
 sklearn
 scikit-learn
-beautifulsoup
 beautifulsoup4
