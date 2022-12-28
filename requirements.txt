@@ -12,3 +12,4 @@ req
 urllib3
 requests
 requests-oauthlib
+beautifulsoup4
