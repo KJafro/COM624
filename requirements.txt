@@ -2,7 +2,6 @@ beautifulsoup4
 commonmark==0.9.1
 contourpy==1.0.6
 cryptography==38.0.4
-click==7.0
 Faker==15.3.4
 fonttools==4.38.0
 frozendict==2.3.4
@@ -33,7 +32,7 @@ rich==12.6.0
 rsa==4.9
 scikit-learn==1.2.0
 scipy==1.9.3
-streamlit==1.0.0
+streamlit
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
 streamlit-embedcode==0.1.2
