@@ -8,3 +8,4 @@ sklearn
 scikit-learn
 urlopen
 bs4
+inotify
