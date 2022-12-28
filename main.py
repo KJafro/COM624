@@ -5,7 +5,6 @@ import streamlit as st
 import yfinance as yf
 from urllib import request
 from plotly import graph_objs as ts
-from streamlit_extras.colored_header import colored_header
 from analysis import Analyzer
 from group import Group
 from prediction import Prediction
@@ -124,11 +123,7 @@ st.markdown(
 <br>
 4) Scroll to the bottom and click the 'Predict' button</p>""", unsafe_allow_html=True)
 
-colored_header(
-    label=" ",
-    description=" ",
-    color_name="blue-70",
-)
+
 st.sidebar.markdown(
     """<p style="
      text-align: center;
@@ -203,7 +198,6 @@ else:
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
     plot_histo()
 
-colored_header(label=" ", description=" ", color_name="blue-70")
 st.markdown(
     """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">LSTM Prediction</p>""",
     unsafe_allow_html=True)
