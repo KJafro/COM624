@@ -6,3 +6,4 @@ streamlit
 vaderSentiment
 sklearn
 scikit-learn
+urlopen
