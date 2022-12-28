@@ -32,7 +32,7 @@ rich==12.6.0
 rsa==4.9
 scikit-learn==1.2.0
 scipy==1.9.3
-streamlit==1.0
+streamlit==1.2.0
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
 streamlit-embedcode==0.1.2
