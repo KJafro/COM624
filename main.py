@@ -198,6 +198,7 @@ else:
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
     plot_histo()
 
+
 st.markdown(
     """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">LSTM Prediction</p>""",
     unsafe_allow_html=True)
