@@ -5,6 +5,7 @@ import streamlit as st
 import yfinance as yf
 from urllib import request
 from plotly import graph_objs as ts
+from streamlit_extras.colored_header import colored_header
 from analysis import Analyzer
 from group import Group
 from prediction import Prediction
