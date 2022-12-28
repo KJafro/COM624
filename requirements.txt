@@ -4,3 +4,5 @@ plotly
 protobuf==3.20.1
 streamlit
 vaderSentiment
+sklearn
+scikit-learn
