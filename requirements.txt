@@ -9,3 +9,5 @@ scikit-learn
 urlopen
 bs4
 inotify
+req
+request
