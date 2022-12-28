@@ -17,8 +17,7 @@ htbuilder==0.6.1
 html5lib==1.1
 joblib==1.2.0
 grpcio-tools==1.44.0
-keras==2.11.0
-Keras-Preprocessing==1.1.2
+keras==2.10.0
 Markdown==3.4.1
 markdownlit==0.0.5
 matplotlib==3.6.2
