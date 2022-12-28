@@ -2,3 +2,4 @@ tensorflow
 yfinance
 plotly
 protobuf==3.20.1
+streamlit
