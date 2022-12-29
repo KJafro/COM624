@@ -129,7 +129,7 @@ sniffio
 soupsieve
 st-annotated-text==3.0.0
 stack-data
-streamlit==1.16.0
+streamlit==1.11.0
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
 streamlit-embedcode==0.1.2
