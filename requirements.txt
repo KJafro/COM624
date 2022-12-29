@@ -48,7 +48,6 @@ psutil
 pure-eval
 pymdown-extensions
 pyparsing
-pywinpty
 pyzmq
 Send2Trash
 sniffio
