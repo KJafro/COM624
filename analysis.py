@@ -43,11 +43,11 @@ class Analyzer:
         mn = statistics.mean(p_scores)
         if mn == 0.0:
             return '🟠 Uncertain'
-        elif mn > 0 and mn <= 0.4 :
+        elif mn > 0 and mn <= 0.5 :
             return '🟢 We suggest you buy the stock 😀'
-        elif mn > 0.4 :
+        elif mn > 0.5 :
             return '🟢 We highly suggest you buy the stock 🤑'
-        elif mn < 0 and mn >= -0.4 :
+        elif mn < 0 and mn >= -0.5 :
             return '🔻 We suggest you dont buy the stock 🙁'
         else :
             return '🔻 We highly suggest you dont buy the stock ☹'
