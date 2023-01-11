@@ -5,12 +5,9 @@ from tensorflow.keras.models import model_from_json
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM
 from sklearn.preprocessing import MinMaxScaler
-
 class Prediction:
     def __init__(self,groups):
         self.groups = groups
-
-        # Training Model
 
     def create_base_model(self,df,ticker):
         data = df.filter(['Close'])
@@ -26,6 +23,7 @@ class Prediction:
             y_train.append(train_data[i, 0])
         x_train, y_train = np.array(x_train), np.array(y_train)
         x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+
         model = Sequential()
         model.add(LSTM(50, return_sequences=True, input_shape=(x_train.shape[1], 1)))
         model.add(LSTM(50, return_sequences=False))
@@ -59,8 +57,6 @@ class Prediction:
         today_pred_price = round(float(today_pred_price[0][0]), 2)
         today_data = round(today_data[0], 2)
         return nextday_pred_price, today_pred_price, today_data
-
-        # Loading Model JSON
 
     def load_pred_model(self, df, ticker):
         load_json = os.path.join(os.getcwd(), "models", f"{ticker}.json")
@@ -96,8 +92,6 @@ class Prediction:
         today_pred_price = round(float(today_pred_price[0][0]), 2)
         today_data = round(today_data[0], 2)
         return nextday_pred_price, today_pred_price, today_data
-
-        # Predicting new model/loading model
 
     def predict(self, df, ticker):
         if self.groups.group(ticker):

@@ -172,13 +172,13 @@ if chosen_stock != None:
     container = st.container()
     col1, col2 = container.columns([5, 5])
 
-    col1.subheader(f"Earliest Data")
-    col1.write(data.head(20))
-    col1.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
-
     col2.subheader(f"Latest Data")
     col2.write(data.tail(20))
     col2.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
+
+    col1.subheader(f"Earliest Data")
+    col1.write(data.head(20))
+    col1.markdown(downloadcsv(data, "Raw"), unsafe_allow_html=True)
 
 # Plotting Time Series graph
 
@@ -202,7 +202,7 @@ else:
 colored_header(label=" ", description=" ", color_name="blue-70")
 
 st.markdown(
-    """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">LSTM Prediction</p>""",
+    """<p style="text-align: center; margin-top: 20px; font-size: 28px; font-weight: bold;">Predict Stock</p>""",
     unsafe_allow_html=True)
 st.markdown(
     """<p style="text-align: center; font-size: 22px;">Click the button below to predict</p>""", unsafe_allow_html=True)
